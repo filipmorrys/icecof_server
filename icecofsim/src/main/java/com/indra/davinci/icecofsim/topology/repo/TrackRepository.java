@@ -1,11 +1,11 @@
-package com.indra.davinci.icecofsim.process;
+package com.indra.davinci.icecofsim.topology.repo;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.indra.davinci.icecofsim.data.Track;
+import com.indra.davinci.icecofsim.topology.data.Track;
 
 public interface TrackRepository extends CrudRepository<Track, Long> {
 

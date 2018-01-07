@@ -1,4 +1,4 @@
-package com.indra.davinci.icecofsim.data;
+package com.indra.davinci.icecofsim.topology.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,6 +36,14 @@ public class Track {
 
 	public Track() {
 		super();
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getMnemonic() {

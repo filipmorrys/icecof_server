@@ -1,4 +1,4 @@
-package com.indra.davinci.icecofsim.data;
+package com.indra.davinci.icecofsim.topology.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +13,9 @@ import javax.persistence.Table;;
  *
  */
 @Entity
-@Table(name="TOPO_NT_E_NODE")
+@Table(schema="USRTRTOPHSROCC", name="TOPO_NT_E_NODE")
 @SecondaryTable(
+		schema="USRTRTOPHSROCC",
 		name="TOPO_NT_E_NETCONN", 
 		pkJoinColumns=@PrimaryKeyJoinColumn(name="NODE_ID")
 )

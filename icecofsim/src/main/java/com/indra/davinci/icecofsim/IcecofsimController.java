@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.indra.davinci.icecofsim.data.Node;
-import com.indra.davinci.icecofsim.data.Track;
 import com.indra.davinci.icecofsim.process.InvalidPathException;
-import com.indra.davinci.icecofsim.process.NodeRepository;
-import com.indra.davinci.icecofsim.process.TrackRepository;
+import com.indra.davinci.icecofsim.topology.data.Node;
+import com.indra.davinci.icecofsim.topology.data.Track;
+import com.indra.davinci.icecofsim.topology.repo.NodeRepository;
+import com.indra.davinci.icecofsim.topology.repo.TrackRepository;
 
 @RestController
 public class IcecofsimController {
