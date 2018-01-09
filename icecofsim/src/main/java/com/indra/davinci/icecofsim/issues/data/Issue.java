@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -45,8 +46,12 @@ public class Issue {
 	
 	private Date expectedFinalHour;
 
-	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
-	@JoinColumn(name="ISSUE_ID")
+	@ElementCollection
+	@CollectionTable(
+		name="ISSUE_TRACKS",
+		schema="USRTRICECOFSIMHSROCC",
+		joinColumns=@JoinColumn(name="ISSUE_ID")
+	)
 	private List<IssueTrack> tracks;
 	
 	public Issue() {
@@ -141,7 +146,6 @@ public class Issue {
 		this.expectedFinalHour = expectedFinalHour;
 	}
 
-	/*
 	public List<IssueTrack> getTracks() {
 		return tracks;
 	}
@@ -153,5 +157,4 @@ public class Issue {
 	public void addTrack(IssueTrack track) {
 		this.tracks.add(track);
 	}
-*/
 }
