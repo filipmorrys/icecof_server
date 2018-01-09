@@ -9,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.indra.davinci.icecofsim.issues.data.Issue;
+import com.indra.davinci.icecofsim.issues.repo.IssuesRepository;
 import com.indra.davinci.icecofsim.process.InvalidPathException;
 import com.indra.davinci.icecofsim.topology.data.Node;
 import com.indra.davinci.icecofsim.topology.data.Track;
@@ -28,6 +32,9 @@ public class IcecofsimController {
 
 	@Autowired
 	private TrackRepository trackRepository;
+	
+	@Autowired
+	private IssuesRepository issuesRepository;
 	
 	@CrossOrigin
 	@RequestMapping("/nodes")
@@ -70,6 +77,28 @@ public class IcecofsimController {
 		logger.log(Level.INFO, "Response for: /tracks => " + tracks);
 
 		return tracks;
+	}
+
+	@CrossOrigin
+	@PostMapping("/issues")
+	private void saveIssue(@RequestBody Issue issue) {
+		logger.log(Level.INFO, "Received request: POST /issues with params:"+issue);
+		
+		issuesRepository.save(issue);
+		
+		logger.log(Level.INFO, "Request: POST /issues processed");
+		
+	}
+	
+	@CrossOrigin
+	@RequestMapping("/issues")
+	public List<Issue> getIssues() {
+		logger.log(Level.INFO, "Received request: /issues");
+		
+		List<Issue> issues = (List<Issue>) issuesRepository.findAll();
+		
+		logger.log(Level.INFO, "Response for: /nodes =>"+issues);
+		return issues;
 	}
 
 	/**

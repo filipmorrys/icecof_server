@@ -1,30 +1,29 @@
 package com.indra.davinci.icecofsim.issues.data;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CollectionTable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema="usrtricecofsimhsrocc", name="ISSUE")
+@Table(schema="USRTRICECOFSIMHSROCC", name="ISSUE")
+@SequenceGenerator(name="ISSUES", sequenceName="SEQ_ISSUES", schema="USRTRICECOFSIMHSROCC")
 public class Issue {
 
 	@Id
-	@GeneratedValue
-	private String id;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ISSUES")
+	private Integer id;
 	
 	private String code;
 	
@@ -46,20 +45,19 @@ public class Issue {
 	
 	private Date expectedFinalHour;
 
-	@ElementCollection
-	@CollectionTable(name = "ISSUE_TRACKS", joinColumns = @JoinColumn(name = "ISSUE_ID"))
-	@Column(name = "TRACK_MNEMO")
-	private Set<String> tracks;
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
+	@JoinColumn(name="ISSUE_ID")
+	private List<IssueTrack> tracks;
 	
 	public Issue() {
-		this.tracks = new HashSet<String>();
+//		this.tracks = new LinkedList<>();
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -143,14 +141,17 @@ public class Issue {
 		this.expectedFinalHour = expectedFinalHour;
 	}
 
-	public Set<String> getTracks() {
+	/*
+	public List<IssueTrack> getTracks() {
 		return tracks;
 	}
 
-	public void setTracks(Set<String> tracks) {
+	public void setTracks(List<IssueTrack> tracks) {
 		this.tracks = tracks;
 	}
-
 	
-	
+	public void addTrack(IssueTrack track) {
+		this.tracks.add(track);
+	}
+*/
 }
