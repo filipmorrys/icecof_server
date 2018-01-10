@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -13,17 +12,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(schema="USRTRICECOFSIMHSROCC", name="ISSUE")
-@SequenceGenerator(name="ISSUES", sequenceName="SEQ_ISSUES", schema="USRTRICECOFSIMHSROCC")
+@SequenceGenerator(
+	name="ISSUES",
+	sequenceName="SEQ_ISSUES",
+	schema="USRTRICECOFSIMHSROCC"
+)
 public class Issue {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ISSUES")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "ISSUES")
 	private Integer id;
 	
 	private String code;
@@ -40,11 +44,11 @@ public class Issue {
 	
 	private String finalNode;
 	
-	private Date initialHour;
+	private Long initialHour;
 	
-	private Date finalHour;
+	private Long finalHour;
 	
-	private Date expectedFinalHour;
+	private Long expectedFinalHour;
 
 	@ElementCollection
 	@CollectionTable(
@@ -52,10 +56,11 @@ public class Issue {
 		schema="USRTRICECOFSIMHSROCC",
 		joinColumns=@JoinColumn(name="ISSUE_ID")
 	)
-	private List<IssueTrack> tracks;
+	@Column(name="TRACK_MNEMO", table="ISSUE_TRACKS")
+	private List<String> tracks;
 	
 	public Issue() {
-//		this.tracks = new LinkedList<>();
+		this.tracks = new LinkedList<>();
 	}
 
 	public Integer getId() {
@@ -122,39 +127,39 @@ public class Issue {
 		this.finalNode = finalNode;
 	}
 
-	public Date getInitialHour() {
+	public Long getInitialHour() {
 		return initialHour;
 	}
 
-	public void setInitialHour(Date initialHour) {
+	public void setInitialHour(Long initialHour) {
 		this.initialHour = initialHour;
 	}
 
-	public Date getFinalHour() {
+	public Long getFinalHour() {
 		return finalHour;
 	}
 
-	public void setFinalHour(Date finalHour) {
+	public void setFinalHour(Long finalHour) {
 		this.finalHour = finalHour;
 	}
 
-	public Date getExpectedFinalHour() {
+	public Long getExpectedFinalHour() {
 		return expectedFinalHour;
 	}
 
-	public void setExpectedFinalHour(Date expectedFinalHour) {
+	public void setExpectedFinalHour(Long expectedFinalHour) {
 		this.expectedFinalHour = expectedFinalHour;
 	}
 
-	public List<IssueTrack> getTracks() {
+	public List<String> getTracks() {
 		return tracks;
 	}
 
-	public void setTracks(List<IssueTrack> tracks) {
+	public void setTracks(List<String> tracks) {
 		this.tracks = tracks;
 	}
 	
-	public void addTrack(IssueTrack track) {
+	public void addTrack(String track) {
 		this.tracks.add(track);
 	}
 }
