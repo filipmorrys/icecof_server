@@ -23,6 +23,7 @@ import com.indra.davinci.icecofsim.topology.repo.NodeRepository;
 import com.indra.davinci.icecofsim.topology.repo.TrackRepository;
 
 @RestController
+@RequestMapping("/api")
 public class IcecofsimController {
 	
 	Logger logger = Logger.getLogger(IcecofsimController.class);
