@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.indra.davinci.icecofsim.issues.data.Issue;
-import com.indra.davinci.icecofsim.issues.repo.IssuesRepository;
+import com.indra.davinci.icecofsim.icecof.issues.data.Issue;
+import com.indra.davinci.icecofsim.icecof.issues.repo.IssuesRepository;
+import com.indra.davinci.icecofsim.icecof.workontracks.data.WorkOnTrack;
+import com.indra.davinci.icecofsim.icecof.workontracks.repo.WorkOnTrackRepository;
 import com.indra.davinci.icecofsim.process.InvalidPathException;
 import com.indra.davinci.icecofsim.topology.data.Node;
 import com.indra.davinci.icecofsim.topology.data.Track;
@@ -36,6 +38,9 @@ public class IcecofsimController {
 	
 	@Autowired
 	private IssuesRepository issuesRepository;
+	
+	@Autowired
+	private WorkOnTrackRepository workOnTrackRepository;
 	
 	@CrossOrigin
 	@RequestMapping("/nodes")
@@ -79,6 +84,7 @@ public class IcecofsimController {
 
 		return tracks;
 	}
+	
 
 	@CrossOrigin
 	@PostMapping("/issues")
@@ -140,5 +146,20 @@ public class IcecofsimController {
 		}
 
 		return pathCompleted ? nodePath : null;
+	}
+	
+	
+	@CrossOrigin
+	@RequestMapping("/wot") 
+	public List<WorkOnTrack> getWorkOnTracks(){
+		logger.log(Level.INFO, "Received request: /wot");
+		return workOnTrackRepository.findAll();
+	}
+	
+	@CrossOrigin
+	@PostMapping("/wot") 
+	public void saveWorkOnTracks(@RequestBody WorkOnTrack wot){
+		logger.log(Level.INFO, "Received post: /wot " + wot);
+		workOnTrackRepository.save(wot);
 	}
 }

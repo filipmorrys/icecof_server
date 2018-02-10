@@ -23,4 +23,4 @@ impdp system/admin@regdb directory=DPUMP_DIR1 dumpfile=EXPDP_USRTRTOPHSROCC_2017
 impdp usrdba/usrdba@regdb directory=RT_DIR dumpfile=EXPDP_USRTRTOPHSROCC_20171214.DMP schemas=usrtrtophsrocc 
 
 -- ICECOFSIM
-impdp system/admin@regdb directory=DPUMP_DIR1 dumpfile=EXPDP_USRTRTOPHSROCC_20171214.DMP schemas=usrtricecofsimhsrocc 
+impdp system/admin@regdb directory=DPUMP_DIR1 dumpfile=EXP_USRTRICECOFSIMHSROCC_20180129.DMP schemas=usrtricecofsimhsrocc 

@@ -1,6 +1,5 @@
-package com.indra.davinci.icecofsim.issues.data;
+package com.indra.davinci.icecofsim.icecof.issues.data;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 

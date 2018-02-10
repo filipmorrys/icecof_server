@@ -1,39 +1,53 @@
-package com.indra.davinci.icecofsim.workontracks.data;
+package com.indra.davinci.icecofsim.icecof.workontracks.data;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(schema = "USRTRICECOFSIMHSROCC", name = "WOT_INTERVAL")
+@SequenceGenerator(name = "WOTINTERVALSEQ", sequenceName = "SEQ_WOT_INTERVAL", schema = "USRTRICECOFSIMHSROCC")
 public class WorkInterval {
-	private String intervalId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WOTINTERVALSEQ")
+	private Integer id;
+
 	private Long startTime;
-	private Long endTimeDate;
+	
+	private Long endTime;
+	
 	private String traject;
+	
 	private int startPk;
+	
 	private int endPk;
+	
 	private String startNode;
+	
 	private String endNode;
+	
 	private String startNodeInclude;
+	
 	private String endNodeInclude;
+	
 	private String circAffected;
+	
+	@OneToMany(targetEntity=TracksById.class, cascade=CascadeType.ALL)
 	private List<TracksById> tracksByIds;
+	
+	@OneToMany(targetEntity=TracksByType.class, cascade=CascadeType.ALL)
 	private List<TracksByType> tracksByTypes;
+	
 
 	public WorkInterval() {
 		super();
-	}
-
-	/**
-	 * @return the intervalId
-	 */
-	public String getIntervalId() {
-		return intervalId;
-	}
-
-	/**
-	 * @param intervalId
-	 *            the intervalId to set
-	 */
-	public void setIntervalId(String intervalId) {
-		this.intervalId = intervalId;
 	}
 
 	/**
@@ -54,16 +68,16 @@ public class WorkInterval {
 	/**
 	 * @return the endTimeDate
 	 */
-	public Long getEndTimeDate() {
-		return endTimeDate;
+	public Long getEndTime() {
+		return endTime;
 	}
 
 	/**
 	 * @param endTimeDate
 	 *            the endTimeDate to set
 	 */
-	public void setEndTimeDate(Long endTimeDate) {
-		this.endTimeDate = endTimeDate;
+	public void setEndTime(Long endTime) {
+		this.endTime = endTime;
 	}
 
 	/**
@@ -216,15 +230,49 @@ public class WorkInterval {
 		this.tracksByTypes = tracksByTypes;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "WorkInterval [intervalId=" + intervalId + ", startTime=" + startTime + ", endTimeDate=" + endTimeDate
+		return "WorkInterval [id=" + id + ", startTime=" + startTime + ", endTime=" + endTime
 				+ ", traject=" + traject + ", startPk=" + startPk + ", endPk=" + endPk + ", startNode=" + startNode
 				+ ", endNode=" + endNode + ", startNodeInclude=" + startNodeInclude + ", endNodeInclude="
 				+ endNodeInclude + ", circAffected=" + circAffected + ", tracksByIds=" + tracksByIds
 				+ ", tracksByTypes=" + tracksByTypes + "]";
+	}
+
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	/**
+	 * @param tracksByIds the tracksByIds to set
+	 */
+	public void setTracksByIds(List<TracksById> tracksByIds) {
+		this.tracksByIds = tracksByIds;
+	}
+
+
+	/**
+	 * @param tracksByTypes the tracksByTypes to set
+	 */
+	public void setTracksByTypes(List<TracksByType> tracksByTypes) {
+		this.tracksByTypes = tracksByTypes;
 	}
 }

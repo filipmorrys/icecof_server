@@ -1,38 +1,49 @@
-package com.indra.davinci.icecofsim.workontracks.data;
+package com.indra.davinci.icecofsim.icecof.workontracks.data;
 
 import java.util.List;
 
-public class WorkOnTrack {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-	private int id;
+@Entity
+@Table(schema = "USRTRICECOFSIMHSROCC", name = "WOT")
+@SequenceGenerator(name = "WOTSEQ", sequenceName = "SEQ_WOT", schema = "USRTRICECOFSIMHSROCC")
+public class WorkOnTrack {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WOTSEQ")
+	private Integer id;
+	
 	private String description;
+	
 	private String contractor;
+	
+	@Column(name = "CLASS")
 	private String workOnTrackClass;
+	
 	private String personContact;
+	
 	private String phone;
+	
 	private String responsable;
+
 	private String occupationZone;
+
 	private int issueId;
+	
+	@OneToMany(targetEntity=WorkInterval.class, cascade=CascadeType.ALL)
 	private List<WorkInterval> workIntervals;
 
+
 	public WorkOnTrack() {
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the description
@@ -167,6 +178,22 @@ public class WorkOnTrack {
 	 */
 	public void setWorkIntervals(List<WorkInterval> workIntervals) {
 		this.workIntervals = workIntervals;
+	}
+
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

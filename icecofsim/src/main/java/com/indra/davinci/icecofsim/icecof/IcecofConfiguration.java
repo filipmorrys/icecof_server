@@ -1,44 +1,48 @@
-package com.indra.davinci.icecofsim.issues;
+package com.indra.davinci.icecofsim.icecof;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", basePackages = {
-		"com.indra.davinci.icecofsim.issues.repo" })
+		"com.indra.davinci.icecofsim.icecof.issues.repo",
+		"com.indra.davinci.icecofsim.icecof.workontracks.repo"})
 
-public class IssuesConfiguration {
+public class IcecofConfiguration {
 
-	public IssuesConfiguration() {
+	public IcecofConfiguration() {
 	}
 
-	@Primary
-	@Bean(name = "dataSource")
-	@ConfigurationProperties(prefix = "issues.datasource")
-	public DataSource dataSource() {
+
+	@Bean(name = "icecofDataSource")
+	@ConfigurationProperties(prefix = "icecof.datasource")
+	public DataSource icecofDataSource() {
 		return DataSourceBuilder.create().build();
 	}
+		
 
-//	@Primary
+
+
 //	@Bean(name = "entityManagerFactory")
 //	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
-//			@Qualifier("dataSource") DataSource dataSource) {
-//		return builder.dataSource(dataSource).packages("com.indra.davinci.icecofsim.issues.data")
-//				.persistenceUnit("issue").build();
+//			@Qualifier("wotDataSource") DataSource dataSource) {
+//		return builder.dataSource(dataSource).packages("com.indra.davinci.icecofsim.workontracks.data")
+//				.persistenceUnit("wot").build();
+//	}
+	
+//	@Primary
+//	@Bean
+//	public LocalContainerEntityManagerFactoryBean wotEntityManagerFactory(EntityManagerFactoryBuilder builder,
+//			@Qualifier("wotDataSource") DataSource dataSource) {
+//		return builder.dataSource(dataSource()).packages(WorkOnTrack.class).persistenceUnit("wot").build();
 //	}
 //
 //	@Primary
