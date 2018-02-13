@@ -1,4 +1,4 @@
-package com.indra.davinci.icecofsim.icecof.issues.data;
+package com.indra.davinci.icecofsim.icecof.domain;
 
 import java.util.LinkedList;
 import java.util.List;

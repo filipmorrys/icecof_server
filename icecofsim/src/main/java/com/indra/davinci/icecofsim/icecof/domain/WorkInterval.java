@@ -1,8 +1,9 @@
-package com.indra.davinci.icecofsim.icecof.workontracks.data;
+package com.indra.davinci.icecofsim.icecof.domain;
 
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,30 +14,39 @@ import javax.persistence.Table;
 
 @Entity
 @Table(schema = "USRTRICECOFSIMHSROCC", name = "WOT_INTERVAL")
-@SequenceGenerator(name = "WOTINTERVALSEQ", sequenceName = "SEQ_WOT_INTERVAL", schema = "USRTRICECOFSIMHSROCC")
 public class WorkInterval {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WOTINTERVALSEQ")
+	@SequenceGenerator(name = "WOTINTERVALSEQ", schema = "USRTRICECOFSIMHSROCC", sequenceName = "SEQ_WOT_INTERVAL")
 	private Integer id;
 
+	@Column(name = "START_TIME")
 	private Long startTime;
 	
+	@Column(name = "END_TIME")
 	private Long endTime;
 	
 	private String traject;
 	
+	@Column(name = "START_PK")
 	private int startPk;
 	
+	@Column(name = "END_PK")
 	private int endPk;
 	
+	@Column(name = "START_NODE")
 	private String startNode;
 	
+	@Column(name = "END_NODE")
 	private String endNode;
 	
+	@Column(name = "START_NODE_INCLUDE")
 	private String startNodeInclude;
 	
+	@Column(name = "END_NODE_INCLUDE")
 	private String endNodeInclude;
 	
+	@Column(name = "CIRC_AFFECTED")
 	private String circAffected;
 	
 	@OneToMany(targetEntity=TracksById.class, cascade=CascadeType.ALL)

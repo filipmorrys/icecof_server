@@ -1,4 +1,4 @@
-package com.indra.davinci.icecofsim.icecof.workontracks.data;
+package com.indra.davinci.icecofsim.icecof.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,30 +8,30 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "USRTRICECOFSIMHSROCC", name = "WOT_TRACKS_TYPE")
-@SequenceGenerator(name = "WOTTRACKSTYPESEQ", sequenceName = "SEQ_WOT_TRACKS_TYPE", schema = "USRTRICECOFSIMHSROCC")
-public class TracksByType {
+@Table(schema = "USRTRICECOFSIMHSROCC", name = "WOT_TRACKS_ID")
+public class TracksById {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WOTTRACKSTYPESEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="WOTTRACKSIDSEQ")
+	@SequenceGenerator(name = "WOTTRACKSIDSEQ", schema = "USRTRICECOFSIMHSROCC", sequenceName="SEQ_WOT_TRACKS_ID" )
 	private Integer id;
 
-	private String type;
+	private String trackId;
 
 	private String cutType;
 
 	/**
-	 * @return the type
+	 * @return the trackId
 	 */
-	public String getType() {
-		return type;
+	public String getTrackId() {
+		return trackId;
 	}
 
 	/**
-	 * @param type
-	 *            the type to set
+	 * @param trackId
+	 *            the trackId to set
 	 */
-	public void setType(String type) {
-		this.type = type;
+	public void setTrackId(String trackId) {
+		this.trackId = trackId;
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class TracksByType {
 	 */
 	@Override
 	public String toString() {
-		return "TracksByType [id=" + id + ", type=" + type + ", cutType=" + cutType + "]";
+		return "TracksById [id=" + id + ", trackId=" + trackId + ", cutType=" + cutType + "]";
 	}
 
 	/**
@@ -72,4 +72,5 @@ public class TracksByType {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 }

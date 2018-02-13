@@ -1,4 +1,4 @@
-package com.indra.davinci.icecofsim.icecof.workontracks.data;
+package com.indra.davinci.icecofsim.icecof.domain;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(schema = "USRTRICECOFSIMHSROCC", name = "WOT")
-@SequenceGenerator(name = "WOTSEQ", sequenceName = "SEQ_WOT", schema = "USRTRICECOFSIMHSROCC")
 public class WorkOnTrack {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WOTSEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="WOTSEQ")
+	@SequenceGenerator(name = "WOTSEQ", schema = "USRTRICECOFSIMHSROCC", sequenceName="SEQ_WOT")
 	private Integer id;
 	
 	private String description;
@@ -27,14 +27,18 @@ public class WorkOnTrack {
 	@Column(name = "CLASS")
 	private String workOnTrackClass;
 	
+	
+	@Column(name = "PERSON_CONTACT")
 	private String personContact;
 	
 	private String phone;
 	
 	private String responsable;
 
+	@Column(name = "OCCUPATION_ZONE")
 	private String occupationZone;
 
+	@Column(name = "ISSUE_ID")
 	private int issueId;
 	
 	@OneToMany(targetEntity=WorkInterval.class, cascade=CascadeType.ALL)

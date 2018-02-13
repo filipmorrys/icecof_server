@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.indra.davinci.icecofsim.topology.data.Track;
+import com.indra.davinci.icecofsim.topology.domain.Track;
 
 public interface TrackRepository extends CrudRepository<Track, Long> {
 

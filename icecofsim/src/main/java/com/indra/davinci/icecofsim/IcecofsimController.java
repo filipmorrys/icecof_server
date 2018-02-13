@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.indra.davinci.icecofsim.icecof.issues.data.Issue;
-import com.indra.davinci.icecofsim.icecof.issues.repo.IssuesRepository;
-import com.indra.davinci.icecofsim.icecof.workontracks.data.WorkOnTrack;
-import com.indra.davinci.icecofsim.icecof.workontracks.repo.WorkOnTrackRepository;
+import com.indra.davinci.icecofsim.icecof.domain.Issue;
+import com.indra.davinci.icecofsim.icecof.domain.WorkOnTrack;
+import com.indra.davinci.icecofsim.icecof.repo.IssuesRepository;
+import com.indra.davinci.icecofsim.icecof.repo.WorkOnTrackRepository;
 import com.indra.davinci.icecofsim.process.InvalidPathException;
-import com.indra.davinci.icecofsim.topology.data.Node;
-import com.indra.davinci.icecofsim.topology.data.Track;
+import com.indra.davinci.icecofsim.topology.domain.Node;
+import com.indra.davinci.icecofsim.topology.domain.Track;
 import com.indra.davinci.icecofsim.topology.repo.NodeRepository;
 import com.indra.davinci.icecofsim.topology.repo.TrackRepository;
 

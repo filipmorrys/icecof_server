@@ -1,4 +1,4 @@
-package com.indra.davinci.icecofsim.topology.data;
+package com.indra.davinci.icecofsim.topology.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
