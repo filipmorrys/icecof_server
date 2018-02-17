@@ -48,5 +48,4 @@ public class IcecofConfiguration {
 			@Qualifier("icecofEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
 		return new JpaTransactionManager(entityManagerFactory);
 	}
-	
 }
