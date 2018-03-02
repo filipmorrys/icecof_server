@@ -1,5 +1,6 @@
 package com.indra.davinci.icecofsim.icecof.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,12 +12,14 @@ import javax.persistence.Table;
 @Table(schema = "USRTRICECOFSIMHSROCC", name = "WOT_TRACKS_ID")
 public class TracksById {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="WOTTRACKSIDSEQ")
-	@SequenceGenerator(name = "WOTTRACKSIDSEQ", schema = "USRTRICECOFSIMHSROCC", sequenceName="SEQ_WOT_TRACKS_ID" )
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "WOTTRACKSIDSEQ")
+	@SequenceGenerator(name = "WOTTRACKSIDSEQ", schema = "USRTRICECOFSIMHSROCC", sequenceName = "SEQ_WOT_TRACKS_ID")
 	private Integer id;
 
+	@Column(name = "TRACK_ID")
 	private String trackId;
 
+	@Column(name = "CUT_TYPE")
 	private String cutType;
 
 	/**
@@ -67,7 +70,8 @@ public class TracksById {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;

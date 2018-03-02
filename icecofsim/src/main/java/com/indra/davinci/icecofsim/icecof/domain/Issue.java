@@ -7,6 +7,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,47 +16,44 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema="USRTRICECOFSIMHSROCC", name="ISSUE")
-@SequenceGenerator(
-	name="ISSUES",
-	sequenceName="SEQ_ISSUES",
-	schema="USRTRICECOFSIMHSROCC"
-)
+@Table(schema = "USRTRICECOFSIMHSROCC", name = "ISSUE")
+@SequenceGenerator(name = "ISSUES", sequenceName = "SEQ_ISSUES", schema = "USRTRICECOFSIMHSROCC")
 public class Issue {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "ISSUES")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ISSUES")
 	private Integer id;
-	
+
 	private String code;
-	
+
 	private String description;
-	
+
 	private String type;
-	
+
 	private String subtype;
-	
+
 	private String state;
-	
+
+	@Column(name = "INITIAL_NODE")
 	private String initialNode;
-	
+
+	@Column(name = "FINAL_NODE")
 	private String finalNode;
-	
+
+	@Column(name = "INITIAL_HOUR")
 	private Long initialHour;
-	
+
+	@Column(name = "FINAL_HOUR")
 	private Long finalHour;
-	
+
+	@Column(name = "EXPECTED_FINAL_HOUR")
 	private Long expectedFinalHour;
 
-	@ElementCollection
-	@CollectionTable(
-		name="ISSUE_TRACKS",
-		schema="USRTRICECOFSIMHSROCC",
-		joinColumns=@JoinColumn(name="ISSUE_ID")
-	)
-	@Column(name="TRACK_MNEMO", table="ISSUE_TRACKS")
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name = "ISSUE_TRACKS", schema = "USRTRICECOFSIMHSROCC", joinColumns = @JoinColumn(name = "ISSUE_ID") )
+	@Column(name = "TRACK_MNEMO", table = "ISSUE_TRACKS")
 	private List<String> tracks;
-	
+
 	public Issue() {
 		this.tracks = new LinkedList<>();
 	}
@@ -155,7 +153,7 @@ public class Issue {
 	public void setTracks(List<String> tracks) {
 		this.tracks = tracks;
 	}
-	
+
 	public void addTrack(String track) {
 		this.tracks.add(track);
 	}

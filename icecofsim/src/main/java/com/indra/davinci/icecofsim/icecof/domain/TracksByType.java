@@ -1,5 +1,6 @@
 package com.indra.davinci.icecofsim.icecof.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class TracksByType {
 
 	private String type;
 
+	@Column(name = "CUT_TYPE")
 	private String cutType;
 
 	/**

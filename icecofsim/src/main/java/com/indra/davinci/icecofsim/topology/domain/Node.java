@@ -9,33 +9,30 @@ import javax.persistence.Table;;
 
 /**
  * Clase que representa un nodo de la topología
+ * 
  * @author fdrodriguez
  *
  */
 @Entity
-@Table(schema="USRTRTOPHSROCC", name="TOPO_NT_E_NODE")
-@SecondaryTable(
-		schema="USRTRTOPHSROCC",
-		name="TOPO_NT_E_NETCONN", 
-		pkJoinColumns=@PrimaryKeyJoinColumn(name="NODE_ID")
-)
+@Table(schema = "USRTRTOPHSROCC", name = "TOPO_NT_E_NODE")
+@SecondaryTable(schema = "USRTRTOPHSROCC", name = "TOPO_NT_E_NETCONN", pkJoinColumns = @PrimaryKeyJoinColumn(name = "NODE_ID"))
 public class Node {
-	
+
 	@Id
 	private Long id;
-	
+
 	private String mnemonic;
-	
+
 	private String name;
-	
+
+	@Column(name = "SHORT_NAME")
 	private String shortName;
-	
-	@Column(table="TOPO_NT_E_NETCONN")
-	private Long sectionKp; 
+
+	@Column(name = "SECTION_KP", table = "TOPO_NT_E_NETCONN")
+	private Long sectionKp;
 
 	public Node() {
 	}
-
 
 	public Long getId() {
 		return id;
@@ -76,7 +73,6 @@ public class Node {
 	public void setSectionKp(Long sectionKp) {
 		this.sectionKp = sectionKp;
 	}
-
 
 	@Override
 	public String toString() {
