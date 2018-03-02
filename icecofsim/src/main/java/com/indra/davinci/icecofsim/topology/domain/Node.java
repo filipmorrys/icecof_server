@@ -15,7 +15,8 @@ import javax.persistence.Table;;
  */
 @Entity
 @Table(schema = "USRTRTOPHSROCC", name = "TOPO_NT_E_NODE")
-@SecondaryTable(schema = "USRTRTOPHSROCC", name = "TOPO_NT_E_NETCONN", pkJoinColumns = @PrimaryKeyJoinColumn(name = "NODE_ID"))
+@SecondaryTable(schema = "USRTRTOPHSROCC", 
+	name = "TOPO_NT_E_NETCONN", pkJoinColumns = @PrimaryKeyJoinColumn(name = "NODE_ID"))
 public class Node {
 
 	@Id
